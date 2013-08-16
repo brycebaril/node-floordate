@@ -1,0 +1,33 @@
+{
+  "name": "floordate",
+  "version": "0.0.0",
+  "description": "Simple date flooring, floor a date to the start of a specified time window.",
+  "main": "floordate.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:brycebaril/node-floordate.git"
+  },
+  "keywords": [
+    "date",
+    "floor",
+    "time"
+  ],
+  "author": "Bryce B. Baril",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brycebaril/node-floordate/issues"
+  },
+  "dependencies": {
+    "isnumber": "~1.0.0"
+  },
+  "devDependencies": {
+    "tape": "~1.0.4",
+    "time": "~0.9.2"
+  }
+}
