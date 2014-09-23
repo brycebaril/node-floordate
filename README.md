@@ -3,9 +3,7 @@ floordate
 
 [![NPM](https://nodei.co/npm/floordate.png)](https://nodei.co/npm/floordate/)
 
-`floordate` is a simple function for setting a date to the beginning of a standard time window. E.g. the beginning of the month, year, week, etc.
-
-**IMPORTANT** All dates are considered to be in your locale's timezone.
+`floordate` is a simple function for setting a date to the beginning of a standard time threshold. E.g. the beginning of the month, year, week, etc.
 
 ```js
 var floorDate = require("floordate")
@@ -40,18 +38,21 @@ floorDate(d, "quarter")
 floorDate(d, "year")
 // Tue Jan 01 2013 00:00:00 GMT-0800 (PST)
 
+floorDate(d, "day", "UTC")
+// Thu Aug 15 2013 07:00:00 GMT-0700 (PDT)
+
 ```
 
 API
 ===
 
-`floorDate(date, window)`
+`floorDate(date, threshold[, timezoneOffset])`
 ----------------------
 
-Floor a date to the beginning of the specified window.
+Floor a date to the beginning of the specified threshold. If provided with a desired timezoneOffset, it will convert from the current **LOCALE** timezone to the offset specified.
 
   * date: date can be a Date or a millisecond epoch timestamp
-  * window: window can be a number of milliseconds, or a time window matching the following:
+  * threshold: threshold can be a number of milliseconds, or a time threshold matching the following:
     * s, sec, secs, second, seconds
     * m, min, mins, minute, minutes
     * h, hr, hrs, hour, hours
@@ -60,18 +61,27 @@ Floor a date to the beginning of the specified window.
     * M, mon, mons, month, months
     * y, yr, yrs, year, years
     * q, qtr, qtrs, quarter, quarters
+  * timezoneOffset: (in minutes, e.g. Date.getTimezoneOffset())
+    * Also accepts "UTC" as an alias for offset 0
+
+Note about DST:
+---
+
+Timezone conversion is applied on the resulting date -- e.g. it will look at the local offset of the resulting floored date, then apply the offset to return a Date object with the offset applied.
+
+This means it is the responsibility of the user to correctly specify the desired timezone offset including DST for the **resulting** date, which may be different.
 
 Aliases
 -------
 
-  * `floorDate.toSecond(date)`
-  * `floorDate.toMinute(date)`
-  * `floorDate.toHour(date)`
-  * `floorDate.toDay(date)`
-  * `floorDate.toWeek(date)`
-  * `floorDate.toMonth(date)`
-  * `floorDate.toQuarter(date)`
-  * `floorDate.toYear(date)`
+  * `floorDate.toSecond(date[, timezoneOffset])`
+  * `floorDate.toMinute(date[, timezoneOffset])`
+  * `floorDate.toHour(date[, timezoneOffset])`
+  * `floorDate.toDay(date[, timezoneOffset])`
+  * `floorDate.toWeek(date[, timezoneOffset])`
+  * `floorDate.toMonth(date[, timezoneOffset])`
+  * `floorDate.toQuarter(date[, timezoneOffset])`
+  * `floorDate.toYear(date[, timezoneOffset])`
 
 LICENSE
 =======

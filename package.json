@@ -23,10 +23,20 @@
   "bugs": {
     "url": "https://github.com/brycebaril/node-floordate/issues"
   },
+  "jshintConfig": {
+    "asi": true,
+    "globalstrict": true,
+    "validthis": true,
+    "eqnull": true,
+    "node": true,
+    "loopfunc": true,
+    "newcap": false,
+    "eqeqeq": false
+  },
   "dependencies": {
     "isnumber": "~1.0.0"
   },
   "devDependencies": {
-    "tape": "~2.4.0"
+    "tape": "~3.0.0"
   }
 }
