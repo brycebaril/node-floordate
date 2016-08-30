@@ -35,9 +35,16 @@ function floorDate(date, threshold, tzOffset) {
 }
 
 function _floorDate(date, threshold) {
-  if (isNumber(date) && !(date instanceof Date)) date = new Date(date)
-  var out = date
-  if (threshold == null) return date
+  if (date instanceof Date) {
+    // clone the date so we don't mutate
+    date = new Date(date.getTime())
+  }
+  if (isNumber(date) && !(date instanceof Date)) {
+    date = new Date(date)
+  }
+  if (threshold == null) {
+    return date
+  }
 
   if (isNumber(threshold) && threshold !== 0) {
     // threshold is a number in milliseconds, truncate date

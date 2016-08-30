@@ -85,7 +85,19 @@ test("floorDate w/ timzeone", function (t) {
     new Date(2013, 6, 1, 7), "Floor to quarter")
 
   t.deepEquals(floorDate(initial, "years", 0),
-    new Date(2013, 0, 1, 8), "Floor to year", 0)
+    new Date(2013, 0, 1, 8), "Floor to year")
+
+  t.end()
+})
+
+test('does not mutate', function (t) {
+  var input = new Date(2016, 9, 30, 10, 54)
+  var output = floorDate(input, 'day')
+  t.deepEquals(output, new Date(2016, 9, 30), 'floor to day')
+  t.notEquals(input.getTime(), output.getTime(), 'did not mutate input')
+  t.end()
+})
+
 
   t.end()
 })
